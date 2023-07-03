@@ -1,0 +1,72 @@
+<odoo>
+    <record id="view_school_year_form" model="ir.ui.view">
+        <field name="name">school.year.form</field>
+        <field name="model">school.year</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+
+
+                    <group>
+                        <group>
+                            <field name="year_num"/>
+
+
+                        </group>
+                        <group>
+
+
+                            <field name="class_count"/>
+
+                        </group>
+
+
+                    </group>
+
+
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_school_year_tree" model="ir.ui.view">
+        <field name="name">school.year.tree</field>
+        <field name="model">school.year</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="year_num"/>
+
+                <field name="class_count"/>
+
+            </tree>
+        </field>
+    </record>
+
+    <record id="shool_year_action" model="ir.actions.act_window">
+        <field name="name">Years</field>
+        <field name="res_model">school.year</field>
+        <field name="view_mode">tree,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">
+                Create a new year!
+            </p>
+        </field>
+    </record>
+
+
+    <menuitem id="menu_root" name="SchoolManagement"
+              sequence="1"/>
+
+
+    <menuitem id="shool_year" parent="menu_root" name="years"
+              action="shool_year_action" sequence="2"/>
+
+</odoo>

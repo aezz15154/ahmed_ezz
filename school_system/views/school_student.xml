@@ -1,0 +1,210 @@
+<odoo>
+    <record id="view_school_student_form" model="ir.ui.view">
+        <field name="name">school.student.form</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <form>
+
+                <sheet>
+
+
+                    <group>
+                        <group>
+                            <field name="name"/>
+                            <field name="num"/>
+                            <field name="class_id"/>
+
+
+                        </group>
+                        <group>
+
+
+                            <field name="birthday"/>
+                            <field name="age"/>
+
+                            <field name="year"/>
+                            <field name="gender"/>
+
+                        </group>
+
+
+                    </group>
+
+                    <notebook>
+                        <page string="Subjects">
+                            <field name="subject_ids">
+                                <tree editable="top">
+                                    <field name="name"/>
+
+                                </tree>
+                            </field>
+
+
+                        </page>
+                    </notebook>
+                </sheet>
+                <div class="oe_chatter">
+                    <field name="message_follower_ids"
+                           groups="base.group_user"/>
+                    <field name="activity_ids"/>
+                    <field name="message_ids"/>
+                </div>
+            </form>
+        </field>
+    </record>
+
+
+    <record id="view_school_student_tree" model="ir.ui.view">
+        <field name="name">school.student.tree</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="num"/>
+                <field name="gender"/>
+
+                <field name="class_id"/>
+                <field name="year"/>
+
+                <field name="birthday"/>
+                <field name="age"/>
+
+
+            </tree>
+        </field>
+    </record>
+    <record id="school_student_view_pivot" model="ir.ui.view">
+        <field name="name">school.student.pivot</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <pivot>
+                <field name="name"/>
+                <field name="num"/>
+                <field name="gender"/>
+
+                <field name="class_id"/>
+                <field name="year"/>
+
+                <field name="birthday"/>
+                <field name="age"/>
+            </pivot>
+        </field>
+    </record>
+
+    <record id="school_student_view_graph" model="ir.ui.view">
+        <field name="name">school.student.graph</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <graph>
+                <field name="name"/>
+                <field name="num"/>
+                <field name="gender"/>
+
+                <field name="class_id"/>
+                <field name="year"/>
+
+                <field name="birthday"/>
+                <field name="age"/>
+            </graph>
+        </field>
+    </record>
+    <record id="school_student_search" model="ir.ui.view">
+        <field name="name">school.student.search</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <search string="Student Search">
+                <field name="name"/>
+                <field name="num"/>
+                <field name="gender"/>
+
+                <field name="class_id"/>
+                <field name="year"/>
+
+                <field name="birthday"/>
+                <field name="age"/>
+
+                <group expand="0" string="Group By">
+
+                    <filter name="Class" string="Class"
+
+                            context="{'group_by':'class_id'}"/>
+
+                    <filter name="gender" string="Gender" context="{'group_by':'gender'}"/>
+
+                </group>
+            </search>
+        </field>
+    </record>
+
+    <record id="view_k_school_studentanban" model="ir.ui.view">
+        <field name="name">school.student.kanban</field>
+        <field name="model">school.student</field>
+        <field name="arch" type="xml">
+            <kanban class="o_kanban_mobile">
+                <field name="name"/>
+                <field name="num"/>
+                <field name="gender"/>
+
+
+                <templates>
+                    <t t-name="kanban-box">
+                        <div t-attf-class="oe_kanban_card oe_kanban_global_click">
+                            <div t-attf-class="#{!selection_mode ? 'text-center' : ''}">
+                                <strong>
+                                    <span>
+                                        <field name="name"/>
+                                    </span>
+                                </strong>
+                            </div>
+                            <hr class="mt8 mb8"/>
+                            <div class="row">
+                                <div t-attf-class="col-12 #{!selection_mode ? 'text-center' : ''}">
+                                    <span>
+                                        number:
+                                        <field name="num"/>
+                                    </span>
+                                </div>
+                                <hr class="mt8 mb8"/>
+                                <div t-attf-class="col-12 #{!selection_mode ? 'text-center' : ''}">
+                                    <span>
+                                        gender:
+                                        <field name="gender"/>
+                                    </span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </t>
+                </templates>
+            </kanban>
+        </field>
+    </record>
+        <record id="school_student_calendar_view" model="ir.ui.view">
+            <field name="name">school.student.calendar.view</field>
+            <field name="model">school.student</field>
+            <field name="arch" type="xml">
+                <calendar string="school student"     date_start="birthday">
+                    <field name="name"/>
+                    <field name="num"/>
+                    <field name="gender"/>
+                </calendar>
+            </field>
+        </record>
+
+
+        <record id="school_student_action" model="ir.actions.act_window">
+            <field name="name">Student</field>
+            <field name="res_model">school.student</field>
+            <field name="view_mode">tree,form,graph,pivot,search,kanban,calendar</field>
+            <field name="help" type="html">
+                <p class="o_view_nocontent_smiling_face">
+                    Create a new Student!
+                </p>
+            </field>
+        </record>
+
+
+        <menuitem id="school_student" parent="menu_root" name="Student"
+                  action="school_student_action" sequence="4"/>
+
+    </odoo>
